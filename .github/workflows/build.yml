@@ -24,6 +24,12 @@ jobs:
       - name: Run PyInstaller
         run: |
           python -m PyInstaller bot.spec
+
+      # Diagnostic: List files in dist directory to ensure bot.exe exists
+      - name: List dist directory contents
+        run: |
+          dir dist
+
       - uses: actions/upload-artifact@v4
         with:
           name: Windows_qwiklabs
@@ -42,6 +48,7 @@ jobs:
             Test Release v0.1.1
           draft: false
           prerelease: false
+          
       - name: Upload Release Asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
