@@ -24,7 +24,7 @@ jobs:
       - name: Run PyInstaller
         run: |
           python -m PyInstaller bot.spec
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: Windows_qwiklabs
           path: dist/bot.exe
