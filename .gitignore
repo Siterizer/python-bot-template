@@ -2,5 +2,4 @@ enviroment/
 __pycache__/
 dist/
 build/
-bot.spec
 devScripts.txt
