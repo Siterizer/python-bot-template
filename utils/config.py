@@ -8,8 +8,47 @@ def get_config():
 
     return {
         "fishing": {
-            "x": IntVar(value=config["fishing"]["x"]),
-            "y": IntVar(value=config["fishing"]["y"])
+            "check-area": {
+            "x": IntVar(value=config["fishing"]["check-area"]["x"]),
+            "y": IntVar(value=config["fishing"]["check-area"]["y"]),
+            "width": IntVar(value=config["fishing"]["check-area"]["width"]),
+            "height": IntVar(value=config["fishing"]["check-area"]["height"]),
+            },
+            "key-binds": {
+                "block": config["fishing"]["key-binds"]["block"],
+                "cast": config["fishing"]["key-binds"]["cast"],
+                "drag-left": config["fishing"]["key-binds"]["drag-left"],
+                "drag-right": config["fishing"]["key-binds"]["drag-right"],
+            },
+            "timeouts": {
+                "loop": {
+                    "min": config["fishing"]["timeouts"]["loop"]["min"],
+                    "max": config["fishing"]["timeouts"]["loop"]["max"],
+                },
+                "notice-spam": {
+                    "min": config["fishing"]["timeouts"]["notice-spam"]["min"],
+                    "max": config["fishing"]["timeouts"]["notice-spam"]["max"],
+                },
+                "reeling": {
+                    "min": config["fishing"]["timeouts"]["reeling"]["min"],
+                    "max": config["fishing"]["timeouts"]["reeling"]["max"],
+                },
+                "reeling-pause": {
+                    "min": config["fishing"]["timeouts"]["reeling-pause"]["min"],
+                    "max": config["fishing"]["timeouts"]["reeling-pause"]["max"],
+                },
+                "recast": {
+                    "min": config["fishing"]["timeouts"]["recast"]["min"],
+                    "max": config["fishing"]["timeouts"]["recast"]["max"],
+                },
+            },
+        },
+        "colors": {
+            "fish-track": (
+                config["colors"]["fish-track"]["r"],
+                config["colors"]["fish-track"]["g"],
+                config["colors"]["fish-track"]["b"],
+            )
         },
         "log_lvl": config["log_lvl"],
     }
@@ -18,8 +57,47 @@ def get_config():
 def save_data(config):
     d = {
         "fishing": {
-            "x": config["fishing"]["x"].get(),
-            "y": config["fishing"]["y"].get()
+            "check-area": {
+                "x": config["fishing"]["check-area"]["x"].get(),
+                "y": config["fishing"]["check-area"]["y"].get(),
+                "width": config["fishing"]["check-area"]["width"].get(),
+                "height": config["fishing"]["check-area"]["height"].get(),
+            },
+            "key-binds": {
+                "block": config["fishing"]["key-binds"]["block"],
+                "cast": config["fishing"]["key-binds"]["cast"],
+                "drag-left": config["fishing"]["key-binds"]["drag-left"],
+                "drag-right": config["fishing"]["key-binds"]["drag-right"],
+            },
+            "timeouts": {
+                "loop": {
+                    "min": config["fishing"]["timeouts"]["loop"]["min"],
+                    "max": config["fishing"]["timeouts"]["loop"]["max"],
+                },
+                "notice-spam": {
+                    "min": config["fishing"]["timeouts"]["notice-spam"]["min"],
+                    "max": config["fishing"]["timeouts"]["notice-spam"]["max"],
+                },
+                "reeling": {
+                    "min": config["fishing"]["timeouts"]["reeling"]["min"],
+                    "max": config["fishing"]["timeouts"]["reeling"]["max"],
+                },
+                "reeling-pause": {
+                    "min": config["fishing"]["timeouts"]["reeling-pause"]["min"],
+                    "max": config["fishing"]["timeouts"]["reeling-pause"]["max"],
+                },
+                "recast": {
+                    "min": config["fishing"]["timeouts"]["recast"]["min"],
+                    "max": config["fishing"]["timeouts"]["recast"]["max"],
+                },
+            }
+        },
+        "colors": {
+            "fish-track": {
+                "r": config["colors"]["fish-track"][0],
+                "g": config["colors"]["fish-track"][1],
+                "b": config["colors"]["fish-track"][2],
+            },
         },
         "log_lvl": config["log_lvl"],
     }

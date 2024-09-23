@@ -1,4 +1,33 @@
 fishing:
-  x: 1420
-  y: 32
-log_lvl: INFO
+  check-area:
+    x: 1420
+    y: 32
+    width: 301
+    height: 635
+  key-binds:
+    block: q
+    cast: f
+    drag-left: a
+    drag-right: d
+  timeouts:
+    loop:
+      min: 0.01
+      max: 0.01
+    notice-spam:
+      min: 0.75
+      max: 0.75
+    reeling:
+      min: 1.1
+      max: 1.1
+    reeling-pause:
+      min: 1.5
+      max: 1.5
+    recast:
+      min: 4.0
+      max: 4.0
+colors:
+  fish-track:
+    r: 60
+    g: 92
+    b: 84
+log_lvl: DEBUG
