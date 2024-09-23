@@ -44,6 +44,7 @@ jobs:
           tag_name: ${{ github.event.head_commit.message }}
           release_name: ${{ github.event.head_commit.message }}
           overwrite: true
+          allowUpdates: true
           body: |
             Test Release v0.1.1
           draft: false
