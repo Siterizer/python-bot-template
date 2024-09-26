@@ -1,0 +1,70 @@
+name: Build Workflow
+
+on:
+  push:
+    branches: main
+
+jobs:
+  build-windows:
+    runs-on: windows-2019
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.7'
+          architecture: 'x64'
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
+      - name: Install pyinstaller
+        run: |
+          pip install pyinstaller
+      - name: Run PyInstaller
+        run: |
+          python -m PyInstaller bot.spec
+
+      # Diagnostic: List files in dist/bot directory to ensure everything is in place
+      - name: List dist/bot directory contents
+        run: |
+          dir dist\bot
+
+      # Create a zip file from the dist/bot directory
+      - name: Zip dist/bot folder
+        run: |
+          powershell Compress-Archive -Path dist\bot\* -DestinationPath dist\bot.zip
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Windows_qwiklabs
+          path: dist/bot.zip
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Windows_qwiklabs
+          path: dist/bot/bot.exe
+
+      - name: create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.event.head_commit.message }}
+          release_name: ${{ github.event.head_commit.message }}
+          overwrite: true
+          allowUpdates: true
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{steps.create_release.outputs.upload_url}}
+          asset_path: ./dist/bot.zip
+          asset_name: bot.zip
+          asset_content_type: application/zip

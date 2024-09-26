@@ -1,0 +1,5 @@
+enviroment/
+__pycache__/
+dist/
+build/
+devScripts.txt
