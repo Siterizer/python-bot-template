@@ -3,6 +3,8 @@ name: Build Workflow
 on:
   push:
     branches: main
+    tags:
+      - 'v*.*.*'  # This pattern matches tags like v0.1.0, v1.2.3, etc.
 
 jobs:
   build-windows:
@@ -51,8 +53,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.event.head_commit.message }}
-          release_name: ${{ github.event.head_commit.message }}
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ github.ref_name }}
           overwrite: true
           allowUpdates: true
           draft: false
