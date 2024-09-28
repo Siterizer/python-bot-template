@@ -8,15 +8,21 @@ def get_config():
 
     return {
         "fishing": {
-            "check-area": {
-            "x": IntVar(value=config["fishing"]["check-area"]["x"]),
-            "y": IntVar(value=config["fishing"]["check-area"]["y"]),
-            "width": IntVar(value=config["fishing"]["check-area"]["width"]),
-            "height": IntVar(value=config["fishing"]["check-area"]["height"]),
+            "fish-position": {
+                "x": IntVar(value=config["fishing"]["fish-position"]["x"]),
+                "y": IntVar(value=config["fishing"]["fish-position"]["y"]),
+                "width": IntVar(value=config["fishing"]["fish-position"]["width"]),
+                "height": IntVar(value=config["fishing"]["fish-position"]["height"]),
+            },
+            "fishing-progress": {
+                "x": IntVar(value=config["fishing"]["fishing-progress"]["x"]),
+                "y": IntVar(value=config["fishing"]["fishing-progress"]["y"]),
+                "width": IntVar(value=config["fishing"]["fishing-progress"]["width"]),
+                "height": IntVar(value=config["fishing"]["fishing-progress"]["height"]),
             },
             "key-binds": {
                 "block": config["fishing"]["key-binds"]["block"],
-                "cast": config["fishing"]["key-binds"]["cast"],
+                "recast": config["fishing"]["key-binds"]["recast"],
                 "drag-left": config["fishing"]["key-binds"]["drag-left"],
                 "drag-right": config["fishing"]["key-binds"]["drag-right"],
             },
@@ -40,6 +46,10 @@ def get_config():
                 "recast": {
                     "min": config["fishing"]["timeouts"]["recast"]["min"],
                     "max": config["fishing"]["timeouts"]["recast"]["max"],
+                },
+                "cast": {
+                    "min": config["fishing"]["timeouts"]["cast"]["min"],
+                    "max": config["fishing"]["timeouts"]["cast"]["max"],
                 },
             },
         },
@@ -57,15 +67,21 @@ def get_config():
 def save_data(config):
     d = {
         "fishing": {
-            "check-area": {
-                "x": config["fishing"]["check-area"]["x"].get(),
-                "y": config["fishing"]["check-area"]["y"].get(),
-                "width": config["fishing"]["check-area"]["width"].get(),
-                "height": config["fishing"]["check-area"]["height"].get(),
+            "fish-position": {
+                "x": config["fishing"]["fish-position"]["x"].get(),
+                "y": config["fishing"]["fish-position"]["y"].get(),
+                "width": config["fishing"]["fish-position"]["width"].get(),
+                "height": config["fishing"]["fish-position"]["height"].get(),
+            },
+            "fishing-progress": {
+                "x": config["fishing"]["fishing-progress"]["x"].get(),
+                "y": config["fishing"]["fishing-progress"]["y"].get(),
+                "width": config["fishing"]["fishing-progress"]["width"].get(),
+                "height": config["fishing"]["fishing-progress"]["height"].get(),
             },
             "key-binds": {
                 "block": config["fishing"]["key-binds"]["block"],
-                "cast": config["fishing"]["key-binds"]["cast"],
+                "recast": config["fishing"]["key-binds"]["recast"],
                 "drag-left": config["fishing"]["key-binds"]["drag-left"],
                 "drag-right": config["fishing"]["key-binds"]["drag-right"],
             },
@@ -89,6 +105,10 @@ def save_data(config):
                 "recast": {
                     "min": config["fishing"]["timeouts"]["recast"]["min"],
                     "max": config["fishing"]["timeouts"]["recast"]["max"],
+                },
+                "cast": {
+                    "min": config["fishing"]["timeouts"]["cast"]["min"],
+                    "max": config["fishing"]["timeouts"]["cast"]["max"],
                 },
             }
         },
