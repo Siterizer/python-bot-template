@@ -1,12 +1,17 @@
 fishing:
-  check-area:
-    x: 1420
-    y: 32
-    width: 301
-    height: 635
+  fish-position:
+    x: 850
+    y: 445
+    width: 1732
+    height: 159
+  fishing-progress:
+    x: 1807
+    y: 731
+    width: 226
+    height: 286
   key-binds:
     block: q
-    cast: f
+    recast: f
     drag-left: a
     drag-right: d
   timeouts:
@@ -25,6 +30,9 @@ fishing:
     recast:
       min: 4.0
       max: 4.0
+    cast:
+      min: 0.1
+      max: 0.3
 colors:
   fish-track:
     r: 60

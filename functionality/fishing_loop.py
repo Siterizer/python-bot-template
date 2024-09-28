@@ -2,14 +2,13 @@ from time import time
 from wrappers.logging_wrapper import debug, info
 from .PlayerStates import PlayerStates
 from .ImageRecognitionResult import ImageRecognitionResult
+from asyncio import sleep
 
 import asyncio
 from functionality.fishing_actions import cast, fish_notice, pause, reel_fish_left, reel_fish_right
 from functionality.image_recognition import image_recognition_result
 
 
-last_player_state = PlayerStates.IDLING
-last_image_recog_result = ImageRecognitionResult.NOTHING_ON_SCREEN
 
 async def fishing_loop(config):
     loop = asyncio.get_event_loop()
@@ -19,17 +18,20 @@ async def fishing_loop(config):
     }
 
     while True:
+        await sleep(1)
         debug("starting new loop")
         await call_appropriate_fishing_action(ctx)
 
 async def call_appropriate_fishing_action(ctx):
+    last_player_state = PlayerStates.IDLING
+    last_image_recog_result = ImageRecognitionResult.NOTHING_ON_SCREEN
 
     result_from_image_recognition = await image_recognition_result(
         ctx,
-        ctx["config"]["fishing"]["check-area"]["x"].get(),
-        ctx["config"]["fishing"]["check-area"]["y"].get(),
-        ctx["config"]["fishing"]["check-area"]["width"].get(),
-        ctx["config"]["fishing"]["check-area"]["height"].get(),
+        ctx["config"]["fishing"]["fish-position"]["x"].get(),
+        ctx["config"]["fishing"]["fish-position"]["y"].get(),
+        ctx["config"]["fishing"]["fish-position"]["width"].get(),
+        ctx["config"]["fishing"]["fish-position"]["height"].get(),
     )
 
     # double checking that it is a correct match
@@ -42,24 +44,24 @@ async def call_appropriate_fishing_action(ctx):
     # to start mini-game
     if (last_player_state == PlayerStates.SEARCHING and 
             result_from_image_recognition == ImageRecognitionResult.WAITING_FOR_FISH):
-        fish_notice(ctx)
+        await fish_notice(ctx)
         return
     
     #if player in idling state and image result has found nothing, then cast a fishing rod and
     #change player state to searching
     if (last_player_state == PlayerStates.IDLING and
             result_from_image_recognition == ImageRecognitionResult.NOTHING_ON_SCREEN):
-        cast(ctx)
+        await cast(ctx)
         last_player_state = PlayerStates.SEARCHING
         return
     
     if (result_from_image_recognition == ImageRecognitionResult.READY_TO_REEL_LEFT):
-        reel_fish_left(ctx)
+        await reel_fish_left(ctx)
         last_player_state = PlayerStates.REELING
         return
 
     if (result_from_image_recognition == ImageRecognitionResult.READY_TO_REEL_RIGHT):
-        reel_fish_right(ctx)
+        await reel_fish_right(ctx)
         last_player_state = PlayerStates.REELING
         return
     
@@ -72,7 +74,7 @@ async def call_appropriate_fishing_action(ctx):
     
     if (result_from_image_recognition == ImageRecognitionResult.STOP_THE_REEL):
         last_player_state = PlayerStates.WAITING
-        pause(ctx)
+        await pause(ctx)
         return
     
     #finally blocks. If code enters here something wrong happened.
