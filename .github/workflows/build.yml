@@ -37,12 +37,12 @@ jobs:
         run: |
           powershell Compress-Archive -Path dist\bot\* -DestinationPath dist\bot.zip
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Windows_qwiklabs
           path: dist/bot.zip
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Windows_qwiklabs
           path: dist/bot/bot.exe
