@@ -42,11 +42,6 @@ jobs:
           name: Windows_qwiklabs
           path: dist/bot.zip
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: Windows_qwiklabs
-          path: dist/bot/bot.exe
-
       - name: create release
         id: create_release
         uses: actions/create-release@v1
