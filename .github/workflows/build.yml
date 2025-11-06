@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Get tag name from event payload
         id: tag
-        run: echo "TAG=${{ github.event.client_payload.tag }}" >> $GITHUB_ENV
+        run: echo "tag=${{ github.event.client_payload.tag }}" >> $GITHUB_OUTPUT
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -52,8 +52,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.TAG }}
-          release_name: ${{ env.TAG }}
+          tag_name: ${{ steps.tag.outputs.tag }}
+          release_name: ${{ steps.tag.outputs.tag }}
           draft: false
           prerelease: false
 
