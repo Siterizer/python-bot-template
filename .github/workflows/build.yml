@@ -11,7 +11,12 @@ jobs:
     steps:
       - name: Get tag name from event payload
         id: tag
-        run: echo "tag=${{ github.event.client_payload.tag }}" >> $GITHUB_OUTPUT
+        shell: pwsh
+        run: |
+          "tag=${{ github.event.client_payload.tag }}" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Debug output
+        run: echo "Tag is ${{ steps.tag.outputs.tag }}"
 
       - name: Checkout
         uses: actions/checkout@v4
