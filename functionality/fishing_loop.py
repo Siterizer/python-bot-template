@@ -7,14 +7,15 @@ from asyncio import sleep
 import asyncio
 from functionality.fishing_actions import cast, fish_notice, pause, reel_fish_left, reel_fish_right
 from functionality.image_recognition import image_recognition_result
+from utils.config import get_config
 
 
 
-async def fishing_loop(config):
+async def fishing_loop():
     loop = asyncio.get_event_loop()
     ctx = {
         "loop": loop,
-        "config": config
+        "config": get_config()
     }
 
     while True:
