@@ -1,14 +1,14 @@
 fishing:
   fish-position:
-    x: 850
-    y: 445
-    width: 1732
-    height: 159
+    x: 979
+    y: 572
+    width: 2033
+    height: 413
   fishing-progress:
-    x: 1807
+    x: 1280
     y: 731
     width: 226
-    height: 286
+    height: 699
   key-binds:
     block: q
     recast: f

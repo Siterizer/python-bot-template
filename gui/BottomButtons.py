@@ -68,6 +68,4 @@ class BottomButtons:
         )
 
     def do_create_task(self):
-        self.asyncio_event_loop.create_task(
-            fishing_loop(), name="fishing_loop"
-        )
+        self.asyncio_event_loop.create_task(fishing_loop(), name="fishing_loop")
