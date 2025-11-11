@@ -3,10 +3,16 @@ from tkinter import IntVar
 from utils.global_variables import CONFIG_PATH
 from numpy import random
 
+_config = None
+
+
 def get_config():
+    global _config
+    if _config is not None:
+        return _config
     config = safe_load(open(CONFIG_PATH))
 
-    return {
+    _config = {
         "fishing": {
             "fish-position": {
                 "x": IntVar(value=config["fishing"]["fish-position"]["x"]),
@@ -62,64 +68,65 @@ def get_config():
         },
         "log_lvl": config["log_lvl"],
     }
+    return _config
 
 
-def save_data(config):
+def save_data():
     d = {
         "fishing": {
             "fish-position": {
-                "x": config["fishing"]["fish-position"]["x"].get(),
-                "y": config["fishing"]["fish-position"]["y"].get(),
-                "width": config["fishing"]["fish-position"]["width"].get(),
-                "height": config["fishing"]["fish-position"]["height"].get(),
+                "x": _config["fishing"]["fish-position"]["x"].get(),
+                "y": _config["fishing"]["fish-position"]["y"].get(),
+                "width": _config["fishing"]["fish-position"]["width"].get(),
+                "height": _config["fishing"]["fish-position"]["height"].get(),
             },
             "fishing-progress": {
-                "x": config["fishing"]["fishing-progress"]["x"].get(),
-                "y": config["fishing"]["fishing-progress"]["y"].get(),
-                "width": config["fishing"]["fishing-progress"]["width"].get(),
-                "height": config["fishing"]["fishing-progress"]["height"].get(),
+                "x": _config["fishing"]["fishing-progress"]["x"].get(),
+                "y": _config["fishing"]["fishing-progress"]["y"].get(),
+                "width": _config["fishing"]["fishing-progress"]["width"].get(),
+                "height": _config["fishing"]["fishing-progress"]["height"].get(),
             },
             "key-binds": {
-                "block": config["fishing"]["key-binds"]["block"],
-                "recast": config["fishing"]["key-binds"]["recast"],
-                "drag-left": config["fishing"]["key-binds"]["drag-left"],
-                "drag-right": config["fishing"]["key-binds"]["drag-right"],
+                "block": _config["fishing"]["key-binds"]["block"],
+                "recast": _config["fishing"]["key-binds"]["recast"],
+                "drag-left": _config["fishing"]["key-binds"]["drag-left"],
+                "drag-right": _config["fishing"]["key-binds"]["drag-right"],
             },
             "timeouts": {
                 "loop": {
-                    "min": config["fishing"]["timeouts"]["loop"]["min"],
-                    "max": config["fishing"]["timeouts"]["loop"]["max"],
+                    "min": _config["fishing"]["timeouts"]["loop"]["min"],
+                    "max": _config["fishing"]["timeouts"]["loop"]["max"],
                 },
                 "notice-spam": {
-                    "min": config["fishing"]["timeouts"]["notice-spam"]["min"],
-                    "max": config["fishing"]["timeouts"]["notice-spam"]["max"],
+                    "min": _config["fishing"]["timeouts"]["notice-spam"]["min"],
+                    "max": _config["fishing"]["timeouts"]["notice-spam"]["max"],
                 },
                 "reeling": {
-                    "min": config["fishing"]["timeouts"]["reeling"]["min"],
-                    "max": config["fishing"]["timeouts"]["reeling"]["max"],
+                    "min": _config["fishing"]["timeouts"]["reeling"]["min"],
+                    "max": _config["fishing"]["timeouts"]["reeling"]["max"],
                 },
                 "reeling-pause": {
-                    "min": config["fishing"]["timeouts"]["reeling-pause"]["min"],
-                    "max": config["fishing"]["timeouts"]["reeling-pause"]["max"],
+                    "min": _config["fishing"]["timeouts"]["reeling-pause"]["min"],
+                    "max": _config["fishing"]["timeouts"]["reeling-pause"]["max"],
                 },
                 "recast": {
-                    "min": config["fishing"]["timeouts"]["recast"]["min"],
-                    "max": config["fishing"]["timeouts"]["recast"]["max"],
+                    "min": _config["fishing"]["timeouts"]["recast"]["min"],
+                    "max": _config["fishing"]["timeouts"]["recast"]["max"],
                 },
                 "cast": {
-                    "min": config["fishing"]["timeouts"]["cast"]["min"],
-                    "max": config["fishing"]["timeouts"]["cast"]["max"],
+                    "min": _config["fishing"]["timeouts"]["cast"]["min"],
+                    "max": _config["fishing"]["timeouts"]["cast"]["max"],
                 },
-            }
+            },
         },
         "colors": {
             "fish-track": {
-                "r": config["colors"]["fish-track"][0],
-                "g": config["colors"]["fish-track"][1],
-                "b": config["colors"]["fish-track"][2],
+                "r": _config["colors"]["fish-track"][0],
+                "g": _config["colors"]["fish-track"][1],
+                "b": _config["colors"]["fish-track"][2],
             },
         },
-        "log_lvl": config["log_lvl"],
+        "log_lvl": _config["log_lvl"],
     }
     with open(CONFIG_PATH, "w") as yaml_file:
         dump(d, yaml_file, sort_keys=False)
