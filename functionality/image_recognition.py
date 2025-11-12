@@ -1,15 +1,7 @@
-import concurrent.futures
-import configparser
-import functools
-from os import path
+from wrappers.logging_wrapper import debug
 from .ImageRecognitionResult import ImageRecognitionResult
 
-import cv2 as cv
-from numpy import array
-from PIL import ImageGrab
-from utils.global_variables import COLOR_WAGES
 
-
-
-async def image_recognition_result(ctx, x, y, width, height):
+async def image_recognition_result(x, y, width, height):
+    debug(f"image_recognition_result based on  x: {x}, y: {y}, width: {width}, height: {height} ")
     return ImageRecognitionResult.NOTHING_ON_SCREEN
