@@ -27,35 +27,12 @@ def get_config():
                 "height": IntVar(value=config["fishing"]["fishing-progress"]["height"]),
             },
             "key-binds": {
-                "block": config["fishing"]["key-binds"]["block"],
                 "recast": config["fishing"]["key-binds"]["recast"],
-                "drag-left": config["fishing"]["key-binds"]["drag-left"],
-                "drag-right": config["fishing"]["key-binds"]["drag-right"],
             },
             "timeouts": {
-                "loop": {
-                    "min": config["fishing"]["timeouts"]["loop"]["min"],
-                    "max": config["fishing"]["timeouts"]["loop"]["max"],
-                },
-                "notice-spam": {
-                    "min": config["fishing"]["timeouts"]["notice-spam"]["min"],
-                    "max": config["fishing"]["timeouts"]["notice-spam"]["max"],
-                },
-                "reeling": {
-                    "min": config["fishing"]["timeouts"]["reeling"]["min"],
-                    "max": config["fishing"]["timeouts"]["reeling"]["max"],
-                },
-                "reeling-pause": {
-                    "min": config["fishing"]["timeouts"]["reeling-pause"]["min"],
-                    "max": config["fishing"]["timeouts"]["reeling-pause"]["max"],
-                },
                 "recast": {
                     "min": config["fishing"]["timeouts"]["recast"]["min"],
                     "max": config["fishing"]["timeouts"]["recast"]["max"],
-                },
-                "cast": {
-                    "min": config["fishing"]["timeouts"]["cast"]["min"],
-                    "max": config["fishing"]["timeouts"]["cast"]["max"],
                 },
             },
         },
@@ -87,35 +64,12 @@ def save_data():
                 "height": _config["fishing"]["fishing-progress"]["height"].get(),
             },
             "key-binds": {
-                "block": _config["fishing"]["key-binds"]["block"],
                 "recast": _config["fishing"]["key-binds"]["recast"],
-                "drag-left": _config["fishing"]["key-binds"]["drag-left"],
-                "drag-right": _config["fishing"]["key-binds"]["drag-right"],
             },
             "timeouts": {
-                "loop": {
-                    "min": _config["fishing"]["timeouts"]["loop"]["min"],
-                    "max": _config["fishing"]["timeouts"]["loop"]["max"],
-                },
-                "notice-spam": {
-                    "min": _config["fishing"]["timeouts"]["notice-spam"]["min"],
-                    "max": _config["fishing"]["timeouts"]["notice-spam"]["max"],
-                },
-                "reeling": {
-                    "min": _config["fishing"]["timeouts"]["reeling"]["min"],
-                    "max": _config["fishing"]["timeouts"]["reeling"]["max"],
-                },
-                "reeling-pause": {
-                    "min": _config["fishing"]["timeouts"]["reeling-pause"]["min"],
-                    "max": _config["fishing"]["timeouts"]["reeling-pause"]["max"],
-                },
                 "recast": {
                     "min": _config["fishing"]["timeouts"]["recast"]["min"],
                     "max": _config["fishing"]["timeouts"]["recast"]["max"],
-                },
-                "cast": {
-                    "min": _config["fishing"]["timeouts"]["cast"]["min"],
-                    "max": _config["fishing"]["timeouts"]["cast"]["max"],
                 },
             },
         },
